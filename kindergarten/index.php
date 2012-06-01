@@ -24,21 +24,35 @@ get_header(); ?>
 			 * called loop-index.php and that will be used instead.
 			 */
 			 get_template_part( 'loop', 'index' );
+
 			?>
+			
+
+<?php 			
+					query_posts('showposts=5&category_name='.$kg_column_1);
+
+						if (have_posts()) : ?>
+							<?php while (have_posts()) : the_post();?>
+								<a href="<?php the_permalink(); ?>" ><?php the_title();	?></a>	
+							<?php endwhile; ?>
+						<?php endif; 
+
+					query_posts('showposts=5&category_name='.$kg_column_2);
+
+						if (have_posts()) : ?>
+							<?php while (have_posts()) : the_post();?>
+								<a href="<?php the_permalink(); ?>" ><?php the_title();	?></a>	
+							<?php endwhile; ?>
+						<?php endif; 
 
 
+					query_posts('showposts=5&category_name='.$kg_column_3);
 
-			<?php var_dump(get_category_by_slug( 'homework' ) )?>
-
-
-
-
-
-
-
-
-
-
+						if (have_posts()) : ?>
+							<?php while (have_posts()) : the_post();?>
+								<a href="<?php the_permalink(); ?>" ><?php the_title();	?></a>	
+							<?php endwhile; ?>
+						<?php endif; ?>
 
 
 			</div><!-- #content -->
