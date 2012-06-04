@@ -9,6 +9,40 @@
 ?>
 
 		<div id="primary" class="widget-area" role="complementary">
+<?php 
+ wp_reset_query();
+
+if(is_home()) :?>
+
+
+
+
+				<div class="board">
+				
+	<?php factory_get_byslug_wpmu("news",2,'teacher') ?>
+
+
+			</div>
+
+				<div>
+						<h3>通知</h3>
+					<img src="<?php bloginfo('template_url'); ?>/images/Nursery_index1_03.gif" />
+				</div>
+				<div>
+						<h3>通知</h3>
+					<img src="<?php bloginfo('template_url'); ?>/images/Nursery_index1_09.gif" />
+				</div>
+				<div>
+						<h3>通知</h3>
+					<img src="<?php bloginfo('template_url'); ?>/images/Nursery_index1_17.gif" />
+				</div>
+
+<?php endif; // front page ?>
+
+
+
+
+
 			<ul class="xoxo">
 
 <?php

@@ -2,7 +2,7 @@
 Theme Name: Kindergarten
 Theme URI: http://Kindergarten.wcweb.us/
 Description: The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the "Asides" and "Gallery" categories, and has an optional one-column page template that removes the sidebar.
-Author: the WordPress team
+Author: Chanry.ian
 Version: 1.0
 License: GNU General Public License
 License URI: license.txt
@@ -30,6 +30,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	*overflow: hidden;
 }
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
@@ -66,18 +67,18 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 */
 
 #container {
-	float: left;
-	margin: 0 -240px 0 0;
+	float: right;
+	margin: 0 -200px 0 0;
 	width: 100%;
 }
 #content {
-	margin: 0 280px 0 20px;
+	margin: 0 250px 0 20px;
 }
 #primary,
 #secondary {
 	float: right;
 	overflow: hidden;
-	width: 220px;
+	width: 180px;
 }
 #secondary {
 	clear: right;
@@ -85,6 +86,7 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 #footer {
 	clear: both;
 	width: 100%;
+
 }
 
 /*
@@ -141,6 +143,7 @@ h3#reply-title,
 .pingback p,
 .reply,
 .widget-title,
+.front-gird,
 .wp-caption-text {
 	font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
 }
@@ -169,9 +172,10 @@ div.menu,
 	width: 940px;
 }
 #wrapper {
-	background:#fff url('images/header_index.jpg') no-repeat;
+
 	margin-top: 20px;
-	padding: 0;
+	padding: 0 0;
+	background:#fff url('images/header_index.jpg') no-repeat;
 }
 
 /* Structure the footer area */
@@ -190,7 +194,7 @@ div.menu,
 	float: left;
 	font-size: 14px;
 	font-weight: bold;
-	/*width: 700px;*/
+/*	width: 700px;*/
 }
 #site-generator {
 	float: right;
@@ -338,13 +342,13 @@ a:hover {
 
 #header {
 	padding: 20px 0 0 0;
-	height:130px;
+	height: 130px;
 }
 #site-title {
 	float: left;
 	font-size: 30px;
 	line-height: 36px;
-	margin: 0;
+	margin: 0 0 0 0;
 	width: 700px;
 }
 #site-title a {
@@ -368,9 +372,11 @@ a:hover {
 
 /* This is the custom header image */
 #branding img {
+/*	border-top: 4px solid #000;
+	border-bottom: 1px solid #000;*/
 	display: block;
 	float: left;
-	margin-left:50px;
+	margin-left: 50px;
 }
 
 
@@ -378,13 +384,11 @@ a:hover {
 -------------------------------------------------------------- */
 
 #access {
-
 	display: block;
 	float: right;
 	margin: 10px 80px 0 80px;
 	width: 500px;
 	*margin-top:-5px;
-
 }
 #access .menu-header,
 div.menu {
@@ -435,16 +439,20 @@ div.menu li {
 	padding: 10px;
 	width: 100px;
 	height: auto;
+	font-weight:normal;
 }
 #access li:hover > a{
 	background:transparent;
 	color:#FFFF33;
-	
 }
+#access li ul li:hover > a{
+	background:#333;
+	color:#fff;
+}
+
 #access ul ul :hover > a {
-	background: #333;
+	background: #0F4000;
 	color: #fff;
-	font-weight:normal;
 }
 #access ul li:hover > ul {
 	background: #0F4000;
@@ -472,6 +480,7 @@ div.menu li {
 	clear: both;
 	overflow: hidden;
 	/*padding: 40px 0 0 0;*/
+	
 }
 .main_index{
 	overflow:auto;
@@ -1233,6 +1242,7 @@ h3#reply-title {
 
 #footer {
 	margin-bottom: 20px;
+
 }
 #colophon {
 	border-top: 1px solid #cbcbcb;
@@ -1242,11 +1252,11 @@ h3#reply-title {
 }
 #site-info {
 	font-weight: bold;
+	margin-left:10px;
 }
 #site-info a {
 	color: #000;
 	text-decoration: none;
-	margin-left:10px;
 }
 #site-generator {
 	font-style: italic;
@@ -1377,13 +1387,13 @@ code {
 	}
 }
 
+#flashnav{
+	height:210px;
+}
 
-
-
-/* =Custom define
--------------------------------------------------------------- */
-
-
+.featured{
+	margin-bottom:100px;
+}
 #foot-nav{
 	float:right;
 	text-align:right;
@@ -1392,6 +1402,35 @@ code {
 #foot-nav p{
 	margin:0;
 }
+.slider-wrapper{
+width: 580px;
+margin-top: 30px;
+margin-left: 10px;
+}
+.board{
+
+}
+
 #jumpNav{
 	float:left;
+}
+
+
+
+.front-gird{
+	font-size:14px;
+	text-align:justify;
+	text-justify:inter-ideograph;
+}
+.cat_head{
+
+	background:url('images/dot_green.gif') no-repeat;
+}
+
+.more{
+	background:url('images/more.gif') no-repeat;
+	text-indent:-1000px;
+	width:66px;
+	height:17px;
+	display: block;
 }
