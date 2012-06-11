@@ -357,7 +357,10 @@ a:hover {
 	text-decoration: none;
 }
 #site-title a{
-	text-indent:-1000px;
+	/*text-indent:-1000px;*/
+}
+#site-title i{
+	/*text-indent:-1000px;*/
 }
 #site-title img{
 	border:none;
@@ -502,7 +505,7 @@ div.menu li {
 #content dd,
 #content pre,
 #content hr {
-	margin-bottom: 24px;
+	margin-bottom: 12px;
 }
 #content ul ul,
 #content ol ol,
@@ -570,16 +573,18 @@ div.menu li {
 }
 .page-title {
 	color: #000;
-	font-size: 14px;
+	font-size: 32px;
 	font-weight: bold;
 	margin: 0 0 36px 0;
+	border-bottom:1px dotted #cbcbcb;
 }
 .page-title span {
 	color: #333;
-	font-size: 16px;
-	font-style: italic;
-	font-weight: normal;
+	padding: 0 25px;
+	background: url('images/dot_green.gif') 5px no-repeat ;
+	font-weight: bold;
 }
+
 .page-title a:link,
 .page-title a:visited {
 	color: #888;
@@ -936,6 +941,7 @@ img.aligncenter {
 #nav-above {
 	display: none;
 }
+.categories #nav-above,
 .paged #nav-above,
 .single #nav-above {
 	display: block;
@@ -1407,9 +1413,7 @@ width: 580px;
 margin-top: 30px;
 margin-left: 10px;
 }
-.board{
 
-}
 
 #jumpNav{
 	float:left;
@@ -1417,20 +1421,156 @@ margin-left: 10px;
 
 
 
-.front-gird{
+
+.front-page{
 	font-size:14px;
 	text-align:justify;
 	text-justify:inter-ideograph;
 }
-.cat_head{
-
-	background:url('images/dot_green.gif') no-repeat;
+.breadcrame{
+	float:right;
+	font-size:14px;
 }
 
-.more{
+.intro{
+	width:100%;
+	height:200px;
+}
+
+.intro-Page{
+	margin-right:200px;
+	overflow: hidden;
+	font-size:14px;
+} 
+.intro-Pic{
+	float:right;
+}
+.intro-Pic a{
+	display: block;
+
+}
+
+.pic_more{
+	position: relative;
+}
+.pic_more span{
+	position:absolute;
+	bottom:0;
+	right:0;
+	width:66px;
+	height:17px;
+	text-indent:-10000px;
+	background:url('images/pic_more.gif')  no-repeat;
+}
+
+
+.col-head{
+	background: url('images/col_green.gif') no-repeat 5px ;
+	font-size:16px;
+	text-indent:20px;
+	font-weight:bold;
+}
+
+.front-gird{
+
+}
+.front-gird a{
+	text-decoration:none;
+}
+.cat{
+	margin-bottom:24px;
+	position: relative;
+}
+.cat_head{
+
+
+	background:url('images/dot_green.gif') no-repeat 5px 10px;
+}
+.cat .cat_head p{ 
+		overflow: hidden;
+	text-indent:20px;
+	display: block;
+	font-size:14px;
+	font-weight:bold;
+	margin:0px;	
+	border-bottom:1px dotted #cbcbcb;
+}
+.cat .cat_head p span{
+	float:left;
+}
+a.more{
 	background:url('images/more.gif') no-repeat;
 	text-indent:-1000px;
 	width:66px;
 	height:17px;
 	display: block;
+	float:right;
+}
+.absright{
+	position: absolute;
+	right:0px;
+	top:0px;
+}
+.sidebar-more{
+	border-top:1px dotted #cbcbcb;
+	text-align:right;
+	display: block;
+}
+.cat_img{
+	width:220px;
+	float: left;
+}
+.cat_text{
+	overflow: hidden;
+	margin-left:230px;
+	height:90px;
+}
+.cat_text li{
+	line-height:18px;
+}
+
+.announcement{
+	min-height:200px;
+}
+
+.announcement .ann_head{
+	
+	height:65px;
+	display:block;
+
+	margin-bottom:10px;
+}
+.announcement ul,.announcement li{
+	list-style:disc inside;
+}
+.week_food{
+	background:#f1fcdb;
+	height:185px;
+}
+.week_food .week_head{
+	background:url('images/bg_week_food_head.gif')no-repeat;
+	height:40px;
+	display:block;
+	margin-bottom:10px;
+
+}
+.week_food ul,.week_food li{
+	list-style:disc inside;
+}
+.page_navi{width:100%;height:36px;line-height:36px;text-align:center;overflow:hidden;padding-top:1em;}
+ 
+.page_navi a{padding:3px 8px;margin:2px;text-decoration:none;color:#888;}
+
+.page_navi a.current{border:1px solid #356aa0;color:#356aa0;font-weight:bolder;}
+
+
+
+.master_mail img{
+	margin:10px auto;
+}
+.#site-title a {
+	float:left;
+}
+.blog_title{
+	line-height:74px;
 }

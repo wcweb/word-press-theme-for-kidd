@@ -49,14 +49,16 @@ foreach ($options as $value) {
 								
 								if ($first_image) {
 									$image = $first_image[0]->guid;
-								}
+								
 								?>
 								<!-- <a href="http://dev7studios.com"><img src="images/up.jpg" alt="" title="This is an example of a caption" /></a> -->
 
-						
-								<a href="<?php the_permalink(); ?>" ><img  src="<?php echo plugin_dir_url('vslider')."vslider/timthumb.php?src=".$image."&w=580&h=300&zc=1&q=100" ?>" width="580" height="300px" title="#<?php the_title(); ?> " /></a>
+						<a href="<?php the_permalink(); ?>" ><img  src="<?php echo plugin_dir_url('vslider')."vslider/timthumb.php?src=".$image."&w=580&h=300&zc=1&q=100" ?>" width="580" height="300px" title="#<?php the_title(); ?> " /></a>
 								
-								<?php endwhile; ?>
+								
+								<?php 
+								}
+								endwhile; ?>
 						<?php endif; ?>
 
 						</div>

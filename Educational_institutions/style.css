@@ -569,15 +569,16 @@ div.menu li {
 }
 .page-title {
 	color: #000;
-	font-size: 14px;
+	font-size: 32px;
 	font-weight: bold;
 	margin: 0 0 36px 0;
+	border-bottom:1px dotted #cbcbcb;
 }
 .page-title span {
 	color: #333;
-	font-size: 16px;
-	font-style: italic;
-	font-weight: normal;
+	padding: 0 25px;
+	background: url('images/dot_green.gif') 5px no-repeat ;
+	font-weight: bold;
 }
 .page-title a:link,
 .page-title a:visited {

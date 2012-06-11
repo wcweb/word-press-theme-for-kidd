@@ -65,21 +65,40 @@ $shortname = "kg";
 
 $options = array (
 
-	array(	"name" => "Theme Settings",
+	array(	"name" => "模板设置",
 			"type" => "title"),
 			
 	array(	"type" => "open"),
 	
-	array(	"name" => "Title",
-			"desc" => "the title of your  website.",
-			"id" => $shortname."_welcome_title",
-			"std" => "",
-			"type" => "text"),
 	array(
-			"name"=>"frontSilderCat",
-			"id" => $shortname."_frsilder_cat",
+			"name"=>"garden_name",
+			"id" => $shortname."_garden_name",
 			"type" => "text",
-			"desc" =>"catugle of the pictures in the front page silder "),
+			"desc" =>"幼儿园名称"),
+
+	array(
+			"name"=>"garden_name",
+			"id" => $shortname."_admin",
+			"type" => "text",
+			"desc" =>"幼儿园管理员 管理下属班级博客"),
+
+	array(
+			"name"=>"intorPage",
+			"id" => $shortname."_intorPage_title",
+			"type" => "text",
+			"desc" =>"首页 幼儿园简介 片段关联文章id 在文章编辑 》获取短链接地址"),
+	array(
+			"name"=>"Announcement",
+			"id" => $shortname."_Announcement",
+			"type" => "text",
+			"desc" =>"首页 通知公告 类别 （单页 还是列表好呢？）"),
+
+	array(
+			"name"=>"Week-food",
+			"id" => $shortname."_week_food",
+			"type" => "text",
+			"desc" =>"首页 每周食谱 类别 （单页 还是列表好呢？）"),
+
 	array(
 			"name"=>"column_one",
 			"id" => $shortname."_column_1",
@@ -96,26 +115,16 @@ $options = array (
 			"type" => "text",
 			"desc" =>"首页栏目三"),
 	array(
-			"name"=>"ProductSilderTag",
-			"id" => $shortname."_prsilder_tag",
+			"name"=>"column_grallery",
+			"id" => $shortname."_column_grallery",
 			"type" => "text",
-			"desc" =>"catugle of the pictures in the product page silder "),	
+			"desc" =>"首页图片列表栏目"),
 	array(
-			"name"=>"ProductSilderCatIn",
-			"id" => $shortname."_prsilder_cat_in",
+			"name"=>"collect news in similar categorys of  sub sites ",
+			"id" => $shortname."_news",
 			"type" => "text",
-			"desc" =>"which the pictures catugle of  show with the product page silder use ',' splic"),	
-			
-	array(
-			"name"=>"CategoriesPair",
-			"id" => $shortname."_categories_pair",
-			"type" => "text",
-			"desc" =>"which  categories of  show with the big categories ',' splic,pair like 'key:value'"),			
-		
-	array(	"name" => "Your Email",
-			"desc" => "your email, for displaying gravatar, register in gravatar.com",
-            "id" => $shortname."_email",
-            "type" => "text"),
+			"desc" =>"子站点新闻关联分类 别名 "),	
+
 	
 	array(	"type" => "close")
 	
@@ -328,3 +337,91 @@ if ( function_exists('register_sidebar') )
 // }
 //add_filter('comment_form_default_fields','my_fields');
 
+function par_pagenavi($range = 4){
+ 
+	global $paged, $wp_query;
+	if($wp_query->max_num_pages==1)$wp_query->max_num_pages=$range;
+
+	if ( !$max_page ) {$max_page = $wp_query->max_num_pages;}
+ 
+	if($max_page > 1){if(!$paged){$paged = 1;}
+ 
+	if($paged != 1){echo "<a href='" . get_pagenum_link(1) . "' class='extend' title='跳转到首页'> 返回首页 </a>";}
+ 
+	previous_posts_link(' 上一页 ');
+ 
+    if($max_page > $range){
+ 
+		if($paged < $range){for($i = 1; $i <= ($range + 1); $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+ 
+		if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+ 
+    elseif($paged >= ($max_page - ceil(($range/2)))){
+ 
+		for($i = $max_page - $range; $i <= $max_page; $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+ 
+		if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+ 
+	elseif($paged >= $range && $paged < ($max_page - ceil(($range/2)))){
+ 
+		for($i = ($paged - ceil($range/2)); $i <= ($paged + ceil(($range/2))); $i++){echo "<a href='" . get_pagenum_link($i) ."'";if($i==$paged) echo " class='current'";echo ">$i</a>";}}}
+ 
+    else{for($i = 1; $i <= $max_page; $i++){echo "<a href='" . get_pagenum_link($i) ."'";
+ 
+    if($i==$paged)echo " class='current'";echo ">$i</a>";}}
+ 
+	next_posts_link(' 下一页 ');
+ 
+    if($paged != $max_page){echo "<a href='" . get_pagenum_link($max_page) . "' class='extend' title='跳转到最后一页'> 最后一页 </a>";}}
+ 
+}
+
+
+function get_image_path ($post_id = null) {
+	if ($post_id == null) {
+		global $post;
+		$post_id = $post->ID;
+	}
+	$theImageSrc = get_post_meta($post_id, 'Image', true);
+	echo 'fuck';
+	var_dump( get_post_meta(41, 'attachment',true));
+	global $blog_id;
+	if (isset($blog_id) && $blog_id > 0) {
+		$imageParts = explode('/files/', $theImageSrc);
+		if (isset($imageParts[1])) {
+			$theImageSrc = '/blogs.dir/' . $blog_id . '/files/' . $imageParts[1];
+		}
+	}
+	return $theImageSrc;
+}
+
+function get_image_abspath($src,$post_id = null) {
+	if ($post_id == null) {
+		global $post;
+		$post_id = $post->ID;
+	}
+
+		$theImageSrc = $src;
+	global $blog_id;
+	if (isset($blog_id) && $blog_id > 0) {
+		$imageParts = explode('/files/', $theImageSrc);
+		if (isset($imageParts[1])) {
+			$theImageSrc = '/wp-content/blogs.dir/' . $blog_id . '/files/' . $imageParts[1];
+		}
+	}
+	return $theImageSrc;
+}
+
+function catch_that_image() {
+  global $post, $posts;
+  $first_img = '';
+  ob_start();
+  ob_end_clean();
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches [1] [0];
+
+  if(empty($first_img)){ //Defines a default image
+    $first_img = "/images/default.jpg";
+  }
+  return $first_img;
+}

@@ -17,89 +17,186 @@ get_header();
 
 global $options;
 foreach ($options as $value) {
+
 	if (get_settings( $value['id'] ) === FALSE) { $$value['id'] = $value['std']; } else { $$value['id'] = get_settings( $value['id'] ); }
 }
 
 ?>
 
 		<div id="container">
-			<div id="content" role="main">
-				<div class="breadcrame">当前位置: <span>集团首页</span> > 幼儿园 ><span>首页</span> </div>
-				<div class="front-gird">
-				<div>
-						<h2>幼儿园简介</h2>
-					<img src="<?php bloginfo('template_url'); ?>/images/info.gif" />
-					<p>御景湾幼儿园是 <span>霭德教育集团</span> 旗下幼儿园，隶属珠江御景湾小区配套园所</p>
-					<p>霭德教育本着“少成若天性，习惯如自然”、“好习惯，一生幸福”的教育理念，注重四大优秀品质的培养【关爱（Affection）、主动（Initiative）、勤勉（Diligence）、认真（Earnest）】，注重好习惯的养成教育，进而让孩子们更加健康、自信、聪慧与乐群
-。</p>
+			<div id="content" role="main" class="front-page">
+
+				<div class="breadcrame">•当前位置: <a href="<?php echo get_current_site()->path; ?>"><span><?php echo get_current_site()->site_name;?></span></a> > 
+
+				<?php global $blog_id ;
+				?>
+
+				<a href="<?php echo get_blog_option($blog_id,'siteurl'); ?>"><span> <?php echo get_blog_option($blog_id,'blogname'); ?></span></a> ><span>首页</span>
 				</div>
 
-					<div>
-						<h2>园所新闻</h2> <a class="more">浏览更多</a>
-					<img src="<?php bloginfo('template_url'); ?>/images/cat.gif" />
-						<?php factory_get_byslug_wpmu("news",2,'teacher') ?>
 
+				<div class="front-gird">
+				<div class="intro">
+						<h2 class="col-head">幼儿园简介</h2>
+					
+					<?php 
+					$introPostID = $kg_intorPage_title;
+
+					$introPage=get_post( $introPostID); 
+
+
+					$image = "";
+					$first_image = $wpdb->get_results(
+					
+					"SELECT guid FROM $wpdb->posts WHERE post_parent = '$introPostID' "
+					."AND post_type = 'attachment' ORDER BY `post_date` ASC LIMIT 0,1"
+					
+					);
+					
+					if ($first_image) {
+						$image = $first_image[0]->guid;
+					}else{
+						$image =  get_the_post_thumbnail( $introPostID ); 
+					}
+					
+
+
+					?> 
+					<div class="intro-Pic">
+					<a href="<?php echo $introPage->guid; ?>"  class="pic_more" ><img  src="<?php echo plugin_dir_url('vslider')."vslider/timthumb.php?src=".get_image_abspath($image)."&w=190&h=100&zc=1&q=100" ?>" title="#<?php the_title(); ?> " /><span>点击浏览</span></a>
 					</div>
-				<div>
-						<h2>幼儿园文化活动</h2> <a class="more">浏览更多</a>
-					<img src="<?php bloginfo('template_url'); ?>/images/Nursery_index1_19.gif" />
+					<div class="intro-Page">
+					<p ><?php echo $introPage->post_content; ?></p>
 					</div>
+
+
+				</div>
+
+
+
 					
 <?php 			
 					query_posts('showposts=5&category_name='.$kg_column_1);
 
 						if (have_posts()) : ?>
-							<?php while (have_posts()) : the_post();?>
-								<a href="<?php the_permalink(); ?>" ><?php the_time(’m-d-y’) ?><?php the_title();	?></a>	
-							<?php endwhile; ?>
+							<div class="cat">
+								<div class="cat_head">
+									<p> <span><?php echo get_category_by_slug( $kg_column_1)->name; ?></span>
+									<a href="<?php echo get_category_link(get_category_by_slug( $kg_column_1)->term_id) ?>" class="more">浏览更多</a></p>
+								</div>
+								<div class="cat_img"><img src="<?php bloginfo('template_url'); ?>/images/col_pic_1.gif ?>" alt=""></div>
+
+								<div class="cat_text">
+									<ul>
+										<?php while (have_posts()) : the_post();?>
+										<li>	<a href="<?php the_permalink(); ?>" >|<?php echo get_the_date('Y-m-d'); ?>|&nbsp;&nbsp;<?php the_title();	?></a>	</li>
+										<?php endwhile; ?>
+									</ul>
+								</div>
+							</div>
 						<?php endif; 
  					wp_reset_query();
 					query_posts('showposts=5&category_name='.$kg_column_2);
 
 						if (have_posts()) : ?>
-							<?php while (have_posts()) : the_post();?>
-								<a href="<?php the_permalink(); ?>" ><?php the_date(’m-d-y’) ?><?php the_title();	?></a>	
-							<?php endwhile; ?>
+							<div class="cat">
+								<div class="cat_head">
+									<p> <span><?php echo get_category_by_slug( $kg_column_2)->name; ?></span>
+									<a href="<?php echo get_category_link(get_category_by_slug( $kg_column_2)->term_id) ?>" class="more">浏览更多</a></p>
+								</div>
+								<div class="cat_img"><img src="<?php bloginfo('template_url'); ?>/images/col_pic_2.gif ?>" alt=""></div>
+
+								<div class="cat_text">
+									<ul>
+										<?php while (have_posts()) : the_post();   ?>
+
+										<li>	<a href="<?php the_permalink(); ?>" >|<?php echo get_the_date('Y-m-d'); ?>| &nbsp;&nbsp;<?php the_title();?></a>	</li>
+										<?php endwhile; ?>
+									</ul>
+								</div>
+							</div>
 						<?php endif; 
 
-						
+					wp_reset_query();
 					query_posts('showposts=5&category_name='.$kg_column_3);
 
 						if (have_posts()) : ?>
 							<div class="cat">
 								<div class="cat_head">
-									<h2>temp <?php echo $kg_column_3; ?></h2><a href="<?php  get_category_by_slug( $kg_column_3)?>">浏览更多</a>
+									<p> <span><?php echo get_category_by_slug( $kg_column_3)->name; ?></span>
+									<a href="<?php echo get_category_link(get_category_by_slug( $kg_column_3)->term_id); ?>" class="more">浏览更多</a></p>
 								</div>
-								<div class="cat_img"><img src="" alt=""></div>
+								<div class="cat_img"><img src="<?php bloginfo('template_url'); ?>/images/col_pic_3.gif ?>" alt=""></div>
 
 								<div class="cat_text">
 									<ul>
 										<?php while (have_posts()) : the_post();?>
-										<li>	<a href="<?php the_permalink(); ?>" >|<?php the_date(’Y-m-d’) ?>| <?php the_title();	?></a>	</li>
+										<li>	<a href="<?php the_permalink(); ?>" >|<?php echo get_the_date('Y-m-d'); ?>| &nbsp;&nbsp;<?php the_title();	?></a>	</li>
 										<?php endwhile; ?>
 									</ul>
 								</div>
 							</div>
 						<?php endif; ?>
+
+
+
+						<div class="cat">
+							<?php $sub_news= explode('_',$kg_news); 	?>
+							<div class="cat_head">
+									<p> <span>班级博客更新</span><a href="<?php echo get_category_link(get_category_by_slug( $kg_news)->term_id); ?>" class="more">浏览更多</a></p>
+								</div>
+								<div class="cat_img"><img src="<?php bloginfo('template_url'); ?>/images/col_pic_1.gif ?>" alt=""></div>
+
+								<div class="cat_text">
+							<ul><?php factory_get_byslug_wpmu($sub_news[1],2,$kg_admin) ?></ul>
+							</div>
+						</div>
 				</div>
 
 
 
 
-		<?php
-			// A second sidebar for widgets, just because.
-			if ( is_active_sidebar( 'secondary-widget-area' ) ) : ?>
 
-				<div id="secondary" class="widget-area" role="complementary">
-					<ul class="xoxo">
-						<?php dynamic_sidebar( 'secondary-widget-area' ); ?>
-					</ul>
-				</div><!-- #secondary .widget-area -->
+				<div class="cat">
 
-		<?php endif; ?>
+<?php 				
+					wp_reset_query();
+
+					query_posts('showposts=4&category_name='.$kg_column_grallery);
+						if (have_posts()) :
+
+						 ?>
+
+						<p class="col-head" >幼儿园文化活动</p> <a class="more absright" href="<?php echo get_category_link($kg_column_grallery_id); ?>">浏览更多</a>
+						
+					
+						<?php 
+
+						while (have_posts()) : the_post();
+
+								?>
+								<?php
+									$image = get_image_abspath(catch_that_image());
+								?>
+								
+
+						<a href="<?php the_permalink(); ?>" ><img  src="<?php echo plugin_dir_url('vslider')."vslider/timthumb.php?src=".$image."&w=160&h=110&zc=1&q=100" ?>" 
+						 title="<?php the_title(); ?> " /></a>
+								
+								
+								<?php 
+									
+								endwhile; ?>
+						<?php endif; ?>
+
+						
+
+						
 
 
 
+
+					</div>
 
 			</div><!-- #content -->
 		</div><!-- #container -->
